@@ -1,0 +1,5 @@
+mysql_host: 'localhost'
+mysql_user: 'TCS_CS'
+# Enter your password in field below
+mysql_password: 'tcs1'
+mysql_db: 'case_study2'

@@ -1,0 +1,43 @@
+  <a class="navbar-brand" href="/Home" style="color:black;font-size: 40px;font-family: sans-serif;">AbXy Hospital</a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="width: 30%;right:40px;top:100px;height:10%;border-radius: 10px;">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+    <ul class="navbar-nav justify-content-end">
+        <li class="nav-item dropdown p-1">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 18px">
+          Patient
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="/Create_Patient">Create Patient</a>
+          <a class="dropdown-item" href="/Update_Patient">Update Patient</a>
+          <a class="dropdown-item" href="/Delete_Patient">Delete Patient</a>
+          <a class="dropdown-item" href="/Search_Patient">View Patient</a>
+          <a class="dropdown-item" href="/View_Patient">Display Patients</a>
+          <a class="dropdown-item" href="/Generate_Bill">Generate Bill</a>
+        </div>
+      </li>
+
+
+        <li class="nav-item dropdown p-1">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 18px">
+          Medicine
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="/Patient_Med" >Issue Medicine</a>
+          </div>
+      </li>      
+      <li class="nav-item dropdown p-1">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 18px">
+          Diagnostics
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="/Patient_Diag">Issue Diagnostics</a>
+          </div>
+      </li>
+      
+    </ul>
+  </div>
+</nav>
+<button class="btn float-right btn-primary" style="position:relative;bottom:110px;left:100px" onclick="window.location.href='{{ url_for( 'login' ) }}';">Logout</button>

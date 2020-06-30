@@ -1,0 +1,119 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<head>
+	<title>Patient Search Page</title>
+ </head>  <!--Made with love by Mutiullah Samim -->
+   
+	<!--Bootsrap 4 CDN-->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <!--Fontawesome CDN-->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+	<!--Custom styles-->
+	<!--link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles.css')}}"-->
+
+<html >
+<body style="height:100%;width:100%;background-image: linear-gradient(to right, #bdc3c7 , #2c3e50);">
+
+<div class="container">
+
+
+
+{% include "includes/Nav.html "%}
+
+	<div class=" justify-center" style="position:fixed;top:176px;left:550px;width:500px">
+		<div class="card" style="right:300px; top:200px;width: 250px;">
+        <div class="card-body"style="background-color:rgba(112, 128,144,0.2);">
+        <form action="{{ url_for('Search_Patient') }}" method="GET">
+            <input type="number" name="patient_id" style="background-color:rgba(112, 128,144,0.1);" class="form-control p-2" placeholder="Enter Patient ID" required>
+            {% for message in get_flashed_messages() %}
+            <div class="alert-error" style = "color:rgb(255, 0, 0); text-align: center;"> 
+               <h6>{{ message }}</h6> 
+              </div>
+            {% endfor %}
+            <div>
+                <input type="submit" value="Get Patient Details" class=" btn float-left btn-primary p-1" style="margin-top: 10px;" ></div>
+        
+        </form>
+
+    </div>        
+</div>
+
+		<div class="card" style="position:fixed;top:100px;height:500px;overflow: hidden;">
+			<div class="card-header" style="background-color:rgba(112, 128,144,0.5);">
+				<h3>Patient Details</h3>
+				</div>
+			<div class="card-body"style="background-color:rgba(112, 128,144,0.2);overflow-y:scroll;">
+				<form action="#" method="post">
+					<div class="input-group form-group p-1 col-sm-11">
+						<div class="input-group-prepend">
+							<label style="position:relative;top:5px;" for="ssn_id"><strong>Patient SSN Id :</strong></label>
+							<span class="input-group-text" style="position:relative;left:40px;"><i class="fas fa-user "></i></span>
+						</div>
+							<input type="text" name="ssn_id" id="ssn_id" value = "{{ data[1] }}" style="background-color:rgba(112, 128,144,0.1);position:relative;left:40px;" class="form-control mw-25"  disabled>
+							</div>
+					<div class="input-group form-group p-1 col-sm-11">
+						<div class="input-group-prepend">
+							<label style="position:relative;top:5px;" for="patient_name"><strong>Patient Name :</strong></label>
+							<span class="input-group-text" style="position:relative;left:40px;"><i class="fas fa-user "></i></span>
+						</div>
+							<input type="text" name="patient_name" id="patient_name" value = "{{ data[2] }}" style="background-color:rgba(112, 128,144,0.1);position:relative;left:40px;" class="form-control mw-25"  disabled>
+							</div>
+                    <div class="input-group form-group p-1 col-sm-11">
+						<div class="input-group-prepend">
+							<label style="position:relative;top:5px;" for="patient_age"><strong>Patient Age :</strong></label>
+							<span class="input-group-text" style="position:relative;left:40px;"><i class="fas fa-user "></i></span>
+						</div>
+							<input type="text" name="patient_age" id="patient_age" value = "{{ data[4] }}" style="background-color:rgba(112, 128,144,0.1);position:relative;left:40px;" class="form-control mw-25"  disabled>
+							</div>
+                    <div class="input-group form-group p-1 col-sm-11">
+						<div class="input-group-prepend">
+							<label style="position:relative;top:5px;"for="date_of_admission"><strong>Admission Date :</strong></label>
+							<span class="input-group-text" style="position:relative;left:40px;"><i class="fas fa-calendar"></i></span>
+						</div>
+						<input type="text" name="date_of_admission" id="date_of_admission" value = "{{ data[5] }}" style="background-color:rgba(112, 128,144,0.1);position:relative;left:40px;" class="form-control mw-25" disabled>
+						
+					</div>
+                    <div class="input-group form-group p-1 col-sm-11">
+						<div class="input-group-prepend">
+							<label style="position:relative;top:5px;"for=date_of_admission><strong>Type of Bed :</strong></label>
+							<span class="input-group-text" style="position:relative;left:40px;"><i class="fas fa-bed "></i></span>
+						</div>
+						<input type="text" name="bed_type" id="bed_type" value = "{{ data[6] }}" style="background-color:rgba(112, 128,144,0.1);position:relative;left:40px;" class="form-control mw-25"  disabled>
+						
+					</div>
+					<div class="input-group form-group p-1" >
+						<div class="input-group-prepend">
+							<label style="position:relative;top:5px;" for="city"><strong>Address :</strong></label><span class="input-group-text" style="position:relative;left:10px;"><i class="fas fa-address-card"></i></span>
+						</div>
+    				<textarea class="form-control"  style="background-color:rgba(112, 128,144,0.1);position:relative;left:10px;" id="exampleFormControlTextarea1" placeholder="Address"rows="2" disabled>{{ data[3] }}</textarea>
+					</div>
+					<div class="input-group form-group p-1 col-sm-11">
+						<div class="input-group-prepend">
+							<label style="position:relative;top:5px;" for="city"><strong>City :</strong></label>
+							<span class="input-group-text" style="position:relative;left:40px;"><i class="fas fa-home "></i></span>
+						</div>
+							<input type="text" name="city" id="city" value = "{{ data[7] }}" style="background-color:rgba(112, 128,144,0.1);position:relative;left:40px;" class="form-control mw-25"  disabled>
+							</div>
+					<div class="input-group form-group p-1 col-sm-11">
+				<div class="input-group-prepend">
+							<label style="position:relative;top:5px;"for="state"><strong>State :</strong></label>
+							<span class="input-group-text" style="position:relative;left:40px;"><i class="fas fa-home "></i></span>
+						</div>
+						<input type="text" name="state" id="state" value = "{{ data[8] }}" style="background-color:rgba(112, 128,144,0.1);position:relative;left:40px;" class="form-control mw-25"  disabled>
+					</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+
+</html>

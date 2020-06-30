@@ -1,0 +1,137 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<head>
+	<title>Patient Delete Page</title>
+   <!--Made with love by Mutiullah Samim -->
+   </head>
+	<!--Bootsrap 4 CDN-->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <!--Fontawesome CDN-->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+	<!--Custom styles-->
+	<!--link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles.css')}}"-->
+
+<html >
+<body style="height:100%;width:100%;background-image: linear-gradient(to right, #bdc3c7 , #2c3e50);">
+<div class="container">
+
+
+{% include "includes/Nav.html "%}
+	<div class=" justify-center" style="position:fixed;top:30px;left: 550px;width:500px">
+		<div class="card" style="right:400px; top:300px;width: 300px;">
+			<div class="card-body"style="background-color:rgba(112, 128,144,0.2);"><form method="post">
+				<input type="text" name="pid" style="background-color:rgba(112, 128,144,0.1);" class="form-control p-1" placeholder="Patient Id" required>
+				<div>
+					<input type="submit" name="patient_id" value="Get Patient Id" class=" btn float-right btn-primary p-1">
+				</div></form>
+			</div>
+		</div>
+		<div class="card" style="position:fixed;bottom:50px">
+			<div class="card-header" style="background-color:rgba(112, 128,144,0.5);">
+				<h3>Patient Details</h3>
+			</div>
+			<div class="card-body"style="background-color:rgba(112, 128,144,0.2);">
+				<form method="post">
+					<div class="input-group form-group p-1">
+						<div class="input-group-prepend">
+							<span class="input-group-text">
+								<i class="fas fa-user"></i>
+							</span>
+						</div>
+						<input type="text" name="ssn_id" style="background-color:rgba(112, 128,144,0.1);" class="form-control" placeholder="Patient SSN Id" value="{{data[0]}}" required>
+						<div class="input-group-prepend">
+							<span class="input-group-text">
+								<i class="fas fa-user"></i>
+							</span>
+						</div>
+						<input type="text" name="patient_name" style="background-color:rgba(112, 128,144,0.1);" class="form-control" value="{{data[2]}}" placeholder="Patient Name" required>
+                    </div>
+                    <div class="input-group form-group p-1">
+						<div class="input-group-prepend">
+							<span class="input-group-text">
+								<i class="fas fa-user"></i>
+							</span>
+						</div>
+						<input type="number" name="patient_age" style="background-color:rgba(112, 128,144,0.1);" class="form-control" placeholder="Patient Age" value="{{data[4]}}" required>
+					</div>
+                    <div class="input-group form-group p-1 col-sm-11">
+						<div class="input-group-prepend">
+							<label style="position:relative;top:5px;"for="date_of_admission">
+								<strong>Admission Date :</strong>
+							</label>
+							<span class="input-group-text" style="position:relative;left:40px;">
+								<i class="fas fa-calendar"></i>
+							</span>
+						</div>
+						<input type="date" name="date_of_admission" id="date_of_admission" value="{{data[5]}}" style="background-color:rgba(112, 128,144,0.1);position:relative;left:40px;" class="form-control mw-25" placeholder="Date of Admission" required>
+					</div>
+                    <div class="input-group form-group p-1 col-sm-11">
+						<div class="input-group-prepend">
+							<label style="position:relative;top:5px;"for="bed_type">
+								<strong>Type of Bed :</strong>
+							</label>
+							<span class="input-group-text" style="position:relative;left:40px;">
+								<i class="fas fa-bed "></i>
+							</span>
+						</div>
+						<select class="form-control form-control-md" name="bed_type" style="position:relative;left:40px;background-color:rgba(112, 128,144,0.1);" disabled>
+  								<option id="General" {%if  data[6]=='General': %}  selected="selected" {% endif %} value="General">General ward</option>
+  								<option id="Semi" {%if  data[6]=='Semi': %}  selected="selected" {% endif %} value="Semi">Semi Sharing</option>
+  								<option id="Single" {%if  data[6]=='Single': %}  selected="selected" {% endif %} value="Single">Single Room</option>
+						</select>
+					</div>
+					<div class="input-group form-group p-1" >
+						<div class="input-group-prepend">
+							<span class="input-group-text">
+								<i class="fas fa-address-card"></i>
+							</span>
+						</div>
+    					<textarea class="form-control" id="exampleFormControlTextarea1" style="background-color:rgba(112, 128,144,0.1);"name="address"placeholder="Address"rows="2" disabled>{{data[3]}}</textarea>
+					</div>
+					<div class="input-group form-group p-1 col-sm-11">
+						<div class="input-group-prepend">
+							<label style="position:relative;top:5px;"for="city">
+								<strong>City</strong>
+							</label>
+							<span class="input-group-text" style="position:relative;left:15px;">
+								<i class="fas fa-bed "></i>
+							</span>
+						</div>
+						<select class="form-control form-control-md" name="city" id="city" style="position:relative;left:15px;background-color:rgba(112, 128,144,0.1);" disabled>
+  								<option id="Chennai" {%if  data[6]=='Chennai': %}  selected="selected" {% endif %}>Chennai</option>
+  								<option {%if  data[7]=='Bangalore': %}  selected="selected" {% endif %} id="Bangalore">Bangalore</option>
+  								<option id="Mumbai" {%if  data[7]=='Mumbai': %}  selected="selected" {% endif %} >Mumbai</option>
+  								<option id="Delhi" {%if  data[7]=='Delhi': %}  selected="selected" {% endif %}" >Delhi</option>
+  								<option id="Kolkata" {%if  data[7]=='Kolkata': %}  selected="selected" {% endif %}>Kolkata</option>
+						</select>
+						<div class="input-group-prepend">
+							<label style="position:relative;top:5px;left:20px;"for="state">
+								<strong>State</strong>
+							</label>
+							<span class="input-group-text" style="position:relative;left:35px;">
+								<i class="fas fa-bed "></i>
+							</span>
+						</div>
+						<select class="form-control form-control-md" name="state" id="state" style="position:relative;left:35px;background-color:rgba(112, 128,144,0.1);">
+  								<option id="Tamil Nadu" {%if  data[8]=='Tamil Nadu': %}  selected="selected" {% endif %}>Tamil Nadu</option>
+  								<option id="Andhra Pradesh" {%if  data[8]=='Andhra Pradesh': %}  selected="selected" {% endif %} >Andhra Pradesh</option>
+  								<option id="Karnataka" {%if  data[8]=='Karnataka': %}  selected="selected" {% endif %} >Karnataka</option>
+  								<option id="Madhya Pradesh" {%if  data[8]=='Madhya Pradesh': %}  selected="selected" {% endif %} >Madhya Pradesh</option>
+						</select>
+					</div>
+					<div class="form-group p-2">
+						<input type="submit" value="Delete Patient" class="btn float-right btn-primary">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
